@@ -1,0 +1,257 @@
+HTML TAGS FOR SEO
+=================
+
+The most important HTML tags for SEO are: title tag, meta description, headings (H1–H6), HTML5 semantic tags, alt attribute, Open Graph tags, robots tag, canonical tag, hreflang tag, and Schema markup.
+
+HTML SEO tags describe content to search engines, highlight important parts of your copy, describe images, and give instructions to crawlers. They also influence how pages appear in search results, helping turn regular snippets into rich or featured snippets.
+
+
+1. TITLE TAG
+------------
+<title>Your Title Goes Here</title>
+
+Google may rewrite your title when it's keyword-stuffed, doesn't match a query, is too long or too short, or when alternative social titles exist.
+
+Best practices:
+- Keep titles under 60 characters
+- Use one target keyword or short keyword phrase
+- Place the keyword toward the beginning
+- Optionally include a brand name at the end for authority
+- Fill remaining space with marketing words (e.g., year, list format, selling point)
+
+
+2. META DESCRIPTION TAG
+------------------------
+<meta name="description" content="Your description goes here">
+
+Not a direct ranking factor, but a well-written description improves click-through rates. Google frequently rewrites descriptions to match user queries.
+
+Best practices:
+- Keep it under 160 characters
+- Place keywords and important info near the beginning
+- Use variations of your title keyword (e.g., "business laptops" instead of "laptop for work")
+- Use no more than two or three keywords
+- Avoid double quotation marks — Google cuts the text at quotation marks in SERPs
+- Write unique descriptions for every page
+
+
+3. HEADINGS (H1–H6)
+--------------------
+<h1>Your heading goes here</h1>
+
+Since the introduction of passage indexing in 2021, Google can use individual heading sections as separate search results. Each heading is effectively eligible to rank independently.
+
+Best practices:
+- Use one H1 per page (the main page title)
+- Use H2s for main chapters, H3s for sub-chapters; avoid going beyond H3–H4
+- Write each heading as if it were a standalone page title with a relevant keyword
+- Use parallel syntax across same-level headings to improve eligibility for list-type featured snippets
+- Phrase headings in a query-like, descriptive way rather than vague labels
+
+
+4. HTML5 SEMANTIC TAGS
+-----------------------
+HTML5 semantic tags help search engines understand page structure and can improve PageSpeed performance scores.
+
+Common tags and their uses:
+- <article>   — standalone piece of content (article, forum post)
+- <header>    — header section of the page or section
+- <footer>    — footer section of the page or section
+- <main>      — the primary content of the page
+- <nav>       — navigation links section
+- <audio>     — embedded audio content
+- <video>     — embedded video content
+- <picture>   — container for multiple image sources
+- <time>      — machine-readable dates and times
+- <details>   — expandable additional information
+- <summary>   — visible label for a <details> element
+- <embed>     — external multimedia content
+- <svg>       — embedded SVG graphics
+
+Best practices:
+- Replace generic <div> elements with the appropriate semantic tag where applicable
+- Apply tags accurately — misusing them (e.g., wrapping text in <video>) creates HTML errors
+- Validate your HTML to catch and fix semantic errors
+
+
+5. ALT ATTRIBUTE
+-----------------
+<img src="url" alt="Your image description goes here">
+
+Alt text makes images accessible to search engines and screen readers, and helps images rank in image search.
+
+Best practices:
+- Never leave alt text empty on meaningful images
+- Prioritize images that convey useful data: products, screenshots, logos, infographics, diagrams
+- Include target keywords naturally where appropriate
+- Write descriptive text that provides context, not just keyword strings
+
+
+6. OPEN GRAPH TAGS
+-------------------
+<meta name="og:title" property="og:title" content="Your Open Graph Title Goes Here">
+
+OG tags control how your page appears when shared on social networks (Facebook, LinkedIn, X/Twitter). They can increase click-throughs from social platforms.
+
+Key OG tags:
+- og:title       — 60–90 characters; can match title tag or be written separately for social
+- og:type        — type of content (website, article, video, etc.); defaults to "website"
+- og:description — ~200 characters; focused on driving clicks, not keyword placement
+- og:image       — recommended 1200x627px, up to 5MB; keep important content centered
+
+Twitter (X) Cards:
+- Summary Card: title (70 chars), description (200 chars), image (120x120px, up to 1MB)
+- Summary Card with Large Image: title (70 chars), description (200 chars), image (280x150px, up to 1MB)
+- Player Card: for video/audio within tweets
+- App Card: for promoting mobile apps
+Only one card type per page is supported.
+
+
+7. ROBOTS TAG
+--------------
+<meta name="robots" content="index, follow">
+
+Controls which pages search engines index and follow. Unlike robots.txt (which gives hints), robots tags give binding instructions.
+
+Parameters:
+- noindex      — prevents indexing of the page
+- nofollow     — prevents following all links on the page
+- follow       — links should be followed even on noindex pages
+- noimageindex — images on the page will not be indexed
+- noarchive    — prevents a cached copy from appearing in search results
+- none         — equivalent to "noindex, nofollow"
+
+Best practices:
+- Use "robots" to address all bots, or use individual bot names for specific bots
+- Use noindex for thin-content pages you want to keep but not rank
+
+
+8. CANONICAL TAG
+-----------------
+<link href="URL" rel="canonical">
+
+Tells search engines which version of a page should be prioritized when duplicate or near-duplicate content exists. Prevents keyword cannibalization between similar pages.
+
+Best practices:
+- Add a canonical tag to every page, pointing to its preferred URL
+- Use canonicals when you have paginated content, URL parameters, or syndicated content
+- Ensure duplicate pages point to the correct canonical, not to themselves
+
+
+9. HREFLANG TAG
+----------------
+<link rel="alternate" hreflang="en-gb" href="https://example.com/en-gb/" />
+
+Tells Google which language and regional versions of your pages exist and where to find them. Essential for international SEO.
+
+Benefits:
+- Makes alternate language versions discoverable in search
+- Allows country-level targeting in addition to language
+- Strengthens the overall domain by connecting localized pages
+
+Placement options:
+- In the <head> section (preferred)
+- In an XML sitemap (for large sites)
+- In the HTTP header (for non-HTML files like PDFs)
+
+
+10. SCHEMA MARKUP
+------------------
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  ...
+}
+</script>
+
+Schema is a structured data system that tells search engines about specific content details (prices, ingredients, reviews, events, etc.), enabling rich snippets in search results.
+
+Available schema types include: Article, Product, Event, Book, Movie, Recipe, FAQ, and hundreds more.
+
+Best practices:
+- Use Google's Structured Data Markup Helper to generate schema code
+- Apply the schema type that most accurately matches your content
+- Validate your markup using Google's Rich Results Test after implementation
+
+
+11. NOFOLLOW TAG
+-----------------
+<a href="http://example.com" rel="nofollow">Link Text</a>
+
+Instructs search engines not to follow a link or pass ranking credit to the linked page.
+
+Best practices:
+- Use on sponsored links, ads, and untrusted content
+- A natural mix of nofollow and dofollow links improves link profile credibility
+- Nofollow links still drive referral traffic even without SEO credit
+
+
+12. RESPONSIVE SITE META TAG
+-----------------------------
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+Ensures your site scales correctly on all screen sizes. Google uses mobile-first indexing, so responsive design directly affects rankings.
+
+Place this tag in the <head> section of every page.
+
+
+13. SPONSORED META TAG
+-----------------------
+<a href="http://example.com" rel="sponsored">Link Text</a>
+
+Marks paid or sponsored links to maintain transparency with search engines. Keeps paid placements from manipulating rankings and protects site credibility.
+
+
+14. GEO LOCATION TAG
+---------------------
+<meta name="geo.position" content="latitude;longitude">
+<meta name="geo.region" content="country-subdivision">
+<meta name="geo.placename" content="Place Name">
+
+Specifies geographic coordinates for a page. Helps search engines associate your content with specific locations, supporting local SEO.
+
+Place all geo tags in the <head> section with your actual location values.
+
+
+15. BOLD & STRONG TAGS
+-----------------------
+<b>Bold text</b>
+<strong>Important text</strong>
+
+- <b>    — visual styling only; no semantic meaning
+- <strong> — bold + signals importance to search engines; may receive slightly more weight in ranking
+
+Best practice: Use <strong> for genuinely important phrases rather than <b> for purely decorative emphasis.
+
+
+ADDITIONAL SPECIALIZED TAGS
+============================
+
+data-nosnippet
+--------------
+<span data-nosnippet>This text will not appear in Google's search snippets.</span>
+Prevents specific text from appearing in Google's SERP snippets.
+
+max-video-preview / max-image-preview
+--------------------------------------
+<meta name="robots" content="max-video-preview:30, max-image-preview:standard" />
+Controls the maximum size of video and image previews shown in search results.
+
+X-Robots-Tag
+-------------
+Applied at the server/HTTP header level (e.g., in .htaccess).
+Used to apply indexing directives to non-HTML files such as PDFs and images.
+
+Example (.htaccess):
+<IfModule mod_headers.c>
+  <FilesMatch "\.pdf$">
+    Header set X-Robots-Tag "noindex"
+  </FilesMatch>
+</IfModule>
+
+noarchive
+---------
+<meta name="robots" content="noarchive" />
+Prevents Google from storing or displaying a cached version of the page.
+Useful for frequently updated or sensitive content.

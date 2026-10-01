@@ -1,0 +1,12 @@
+# Dependencies
+node_modules/
+package-lock.json
+
+# Build outputs
+.svelte-kit/
+build/
+dist/
+
+# Env files
+.env
+.env.local
