@@ -1,7 +1,32 @@
-import type { Handle } from '@sveltejs/kit';
+import { redirect, type Handle } from '@sveltejs/kit';
+import { DEFAULT_LANG, isLang, langFromPath, type Lang } from '$lib/i18n';
+
+function detectLang(cookie: string | undefined, acceptLanguage: string | null): Lang {
+	if (isLang(cookie)) return cookie;
+	if (acceptLanguage?.toLowerCase().startsWith('it')) return 'it';
+	return DEFAULT_LANG;
+}
 
 export const handle: Handle = async function handle({ event, resolve }) {
-	const response = await resolve(event);
+	const { pathname, search } = event.url;
+	const fromPath = langFromPath(pathname);
+
+	// Every page lives under a language prefix. Unprefixed URLs (/, /territories…) are sent
+	// to the visitor's language: saved choice first, then the browser, then English.
+	if (!fromPath) {
+		const lang = detectLang(event.cookies.get('lang'), event.request.headers.get('accept-language'));
+		redirect(307, `/${lang}${pathname === '/' ? '' : pathname}${search}`);
+	}
+
+	const lang = fromPath;
+	event.locals.lang = lang;
+	if (event.cookies.get('lang') !== lang) {
+		event.cookies.set('lang', lang, { path: '/', maxAge: 60 * 60 * 24 * 365, httpOnly: false, sameSite: 'lax' });
+	}
+
+	const response = await resolve(event, {
+		transformPageChunk: ({ html }) => html.replace('%lang%', lang)
+	});
 
 	// HTTP Strict Transport Security
 	// Tells browsers to always use HTTPS for 1 year, including subdomains
@@ -29,7 +54,7 @@ export const handle: Handle = async function handle({ event, resolve }) {
 	// - default-src 'self': only load resources from the same origin by default
 	// - script-src 'self' 'unsafe-inline': SvelteKit requires inline scripts for hydration
 	// - style-src 'self' 'unsafe-inline' fonts.googleapis.com: inline styles + Google Fonts CSS
-	// - font-src 'self' fonts.gstatic.com: Google Fonts binary files
+	// - font-src 'self' fonts.gstatic.com: Google Fonts binary files (site fonts are self-hosted)
 	// - img-src 'self' data:: allow same-origin images and inline data URIs
 	// - connect-src 'self': API calls only to same origin
 	// - frame-ancestors 'self': consistent with X-Frame-Options SAMEORIGIN
@@ -47,4 +72,4 @@ export const handle: Handle = async function handle({ event, resolve }) {
 	);
 
 	return response;
-}
+};

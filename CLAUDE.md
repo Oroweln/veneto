@@ -24,6 +24,10 @@ This is a **SvelteKit 2 + Svelte 5** app using `@sveltejs/adapter-node` for Node
 
 **Security headers**: `src/hooks.server.js` applies security headers on every response: HSTS, CSP, X-Frame-Options, X-Content-Type-Options, Referrer-Policy, Permissions-Policy. The CSP allows inline scripts (required by SvelteKit hydration) and Google Fonts.
 
-**i18n**: The `i18n` package is installed. Internationalization setup lives in `src/lib/`.
+**i18n**: English and Italian, set up in `src/lib/i18n/` (own small module; the installed `svelte-i18n` package is not used).
+- English is the source language. Write every new string in `en.ts` (interface) or `content.en.ts` (industries, provinces, sample data) first, then add it to `it.ts` / `content.it.ts`. TypeScript enforces that Italian has the same shape.
+- No text hardcoded in components or data files: use `i18n.t('key')` (from `useI18n()`); data files hold only ids, icons and numbers.
+- Italian is a draft pending professional review: `LANG_STATUS` in `src/lib/i18n/index.ts`. Draft languages show a notice and are `noindex`; set `it: 'reviewed'` once reviewed.
+- `npm run check:i18n` verifies every key used in the code exists and Italian mirrors English.
 
-**Route structure**: `src/routes/+layout.svelte` sets the favicon. `src/routes/+page.svelte` is the root page. All server-only code (email, config) uses the `.server.js` suffix convention to prevent browser bundling.
+**Route structure**: every page lives under a language prefix, `src/routes/[lang=lang]/…` → `/en/…`, `/it/…`. `src/hooks.server.ts` redirects unprefixed URLs (`/`, `/territories`) to the visitor's language (saved cookie, then browser, then English). Build internal links with `i18n.path('/territories')`, never a bare `href="/…"`. Sections not built yet are served by `[lang=lang]/[section=planned]/[...rest]` (list in `src/lib/data/nav.ts`). All server-only code (email, config) uses the `.server.js` suffix convention to prevent browser bundling.

@@ -3,20 +3,21 @@
     "private": true,
     "version": "1.0",
     "type": "module",
-
     "scripts": {
         "dev": "vite dev",
         "build": "vite build",
         "preview": "vite preview",
         "prepare": "svelte-kit sync || echo ''",
         "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
-        "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
+        "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+        "check:i18n": "node scripts/check-i18n.js"
     },
-    "devDependencies":{
+    "devDependencies": {
         "@sveltejs/adapter-node": "^5.5.7",
         "@sveltejs/kit": "^2.70.3",
         "@sveltejs/vite-plugin-svelte": "^7.3.1",
         "@types/nodemailer": "^8.0.2",
+        "@types/qrcode": "^1.5.6",
         "sharp": "^0.35.5",
         "svelte": "^5.57.1",
         "svelte-check": "^4.7.6",
@@ -24,7 +25,11 @@
         "vite": "^8.3.2"
     },
     "dependencies": {
+        "@fontsource-variable/manrope": "^5.3.0",
+        "@fontsource/barlow-condensed": "^5.3.0",
+        "@fontsource/bodoni-moda": "^5.3.0",
         "nodemailer": "^8.0.11",
+        "qrcode": "^1.5.4",
         "svelte-i18n": "^4.0.1"
     }
 }
