@@ -1,11 +1,11 @@
-<script>
-    let { size = 'leaderboard' } = $props();
-
+<script lang="ts">
     const dimensions = {
       leaderboard: { width: '728px', height: '90px', label: '728 × 90' },
       rectangle:   { width: '300px', height: '250px', label: '300 × 250' },
       billboard:   { width: '970px', height: '250px', label: '970 × 250' },
     };
+
+    let { size = 'leaderboard' }: { size?: keyof typeof dimensions } = $props();
 
     let dim = $derived(dimensions[size]);
 </script>
